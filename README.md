@@ -1,30 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) + [TypeScript](https://www.tslang.cn/docs/handbook/react-&-webpack.html) + [antd](https://ant.design/index-cn) + Less project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ git clone git@github.com:jontang-web/next-github.git
+$ cd next-github
+$ yarn
+$ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## FAQ
 
-## Learn More
+#### 1. antd 自定义主题
 
-To learn more about Next.js, take a look at the following resources:
+#### 2. 兼容 Less & css-modules
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### 3. typeScript 文件中引入.less 文件报错
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+解决：项目更目录创建 externals.d.ts 文件，声明 less 模块，如：
 
-## Deploy on Vercel
+```bash
+declare module '*.less'
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+如果使用 css-modules，可以定义以下类型以匹配返回值：
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+declare module '*.less' {
+  const resource: {[key: string]: string};
+  export = resource;
+}
+```
+
+最后把该文件添加到 tsconfig.json 的 includes 属性中，如：
+
+```bash
+{
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/.less"]
+}
+```
