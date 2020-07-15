@@ -17,7 +17,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 #### 1. antd 自定义主题
 
-#### 2. 兼容 Less & css-modules
+更目录下 next.config.js 配置中，lessLoaderOptions 配置项设置 modifyVars 属性值即可，参考[antd 官方实现](https://ant.design/docs/react/use-with-create-react-app-cn#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98)
+
+#### 2. antd 与 css-modules 冲突
+
+解决：[参考实现](https://www.yuque.com/steven-kkr5g/aza/ig3x9w)
 
 #### 3. typeScript 文件中引入.less 文件报错
 
